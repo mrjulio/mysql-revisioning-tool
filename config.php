@@ -2,9 +2,9 @@
 
 // database credentials
 define('DB_HOST',  'localhost');
-define('DB_USER',  'mrjulio');
-define('DB_PASS',  'passwort');
-define('DB_NAME',  'spartan');
+define('DB_USER',  'root');
+define('DB_PASS',  'root');
+define('DB_NAME',  'demo');
 define('DB_TABLE', 'revision');
 
 // remember to add a trailing slash
