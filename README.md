@@ -74,7 +74,7 @@ INSERT INTO demo VALUES (1, 'one');
 
 --@UNDO
 
-DROP TABLE IF EXISTS dummy;
+DROP TABLE IF EXISTS demo;
 ```
 
 ### Naming conventions
