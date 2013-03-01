@@ -17,19 +17,19 @@ Examples:
 - Obviously a mysql server installed.
 
 
-## Installing
-
-### Change config
+## Before installing
 
 First you need to change the config.php file with the correct database credentials.
 
-### Install table
+
+## Installing
 
 Run this in the command line:
 
 `./mrt.sh install`
 
-This will create a table in your database with revision 0. This way the script will know each time what version you have.
+This will create a table in your database with revision 0. 
+This way the script will know each time what version you have.
 
 
 ## Help
@@ -39,15 +39,20 @@ For usage help run this command:
 `./mrt.sh help`
 
 
-## Usage
+## Update
 
 Update to the latest revision:
 
 `./mrt.sh update`
 
-Update to a specific revision:
+
+## Update/Revert 
+
+Update/Revert to a specific revision:
 
 `./mrt.sh revision 7`
+
+If provided revision is higher than db revision it will run update to that revision, otherwise it will rollback.
 
 
 ## Revisions (delta scripts)
@@ -60,16 +65,17 @@ For the script to understand the difference you need to add `--@UNDO` between up
 
 Example:
 
-`-- Creating the dummy table (developer@domain.com)`
+```sql
+-- Creating the dummy table (developer@domain.com)
 
-`CREATE TABLE IF NOT EXISTS dummy (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL);`
+CREATE TABLE IF NOT EXISTS demo (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL);
 
-`INSERT INTO delta VALUES (1, 'one');`
+INSERT INTO demo VALUES (1, 'one');
 
-`--@UNDO`
+--@UNDO
 
-`DROP TABLE IF EXISTS dummy;`
-
+DROP TABLE IF EXISTS dummy;
+```
 
 ### Naming conventions
 
@@ -100,10 +106,12 @@ queries but keep in mind that it won't be suitable for all use cases, mainly for
 2) If you're using a VCS try to create hooks on pulling/pushing code on repository server to run the
 `./mrt.sh update` command automatically.
 
+3) Once a delta is commited to VCS you should add another delta to change a previous commited one.
+
 
 ## Demo
 
-Once you've cloned the tool and changed config.php you can try the demo deltas to get familiar:
+Once you've cloned the tool and changed config.php you can try the demo deltas to get familiar with the tool:
 
 1) Install first: `./mrt.sh install` - this will install the revisioning table in the database.
 
