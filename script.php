@@ -237,11 +237,11 @@ class MySQLRevisioningTool
         $this->start();
 
         $this->mysql()->multi_query(
-            'CREATE TABLE IF NOT EXISTS revision (revision INT UNSIGNED NOT NULL DEFAULT 0);'
+            'CREATE TABLE IF NOT EXISTS ' . DB_TABLE . ' (revision INT UNSIGNED NOT NULL DEFAULT 0);'
                 .
-            'TRUNCATE TABLE revision;'
+            'TRUNCATE TABLE ' . DB_TABLE . ';'
                 .
-            'INSERT INTO revision VALUES (0);'
+            'INSERT INTO ' . DB_TABLE . ' VALUES (0);'
         );
 
         if ($this->mysql()->errno) {
