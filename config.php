@@ -5,7 +5,7 @@ define('DB_HOST',  'localhost');
 define('DB_USER',  'root');
 define('DB_PASS',  'root');
 define('DB_NAME',  'demo');
-define('DB_TABLE', 'revision');
+define('DB_TABLE', 'mrt');
 
 // remember to add a trailing slash
 define('PATH_TO_DELTAS', __DIR__ . '/deltas/');
