@@ -263,7 +263,7 @@ class MySQLRevisioningTool
      */
     public function revision()
     {
-        $resource = $this->mysql()->query('SELECT ' . DB_TABLE . ' FROM revision LIMIT 1');
+        $resource = $this->mysql()->query('SELECT revision FROM ' . DB_TABLE . ' LIMIT 1');
         if ($this->mysql()->error) {
             echo COLOR_RED . ">>> Please run install first or make sure the revision table is created properly!\n\n";
             exit;
@@ -362,3 +362,4 @@ class MySQLRevisioningTool
 }
 
 new MySQLRevisioningTool($argv);
+echo COLOR_RESET;
